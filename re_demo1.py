@@ -73,3 +73,49 @@ print(ret.group())
 text = "513902199311178192"
 ret = re.match('\d{17}[\dxX]',text)
 print(ret.group())
+
+
+# ^(脱字号) 以...开始
+text = "hello"
+ret = re.search('o',text)
+print(ret.group())
+
+# $ 以...结尾
+text = "xxx@163.com"
+ret = re.match('\w+@163.com$',text)
+print(ret.group())
+
+# | 匹配多个字符串或者表达式
+text = "ftp"
+ret = re.match('ftp|https|https$',text)
+print(ret.group())
+
+# 贪婪模式与非贪婪模式
+text = "0123456"
+ret = re.match('\d+?',text)
+print(ret.group())
+
+text = "<h1>标题</h1>"
+ret = re.match('<.+?>',text)
+print(ret.group())
+
+###########匹配0-100之间的数字############
+#可以出现1,13,99,100，不可以出现01,09,101,102
+text = '100'
+ret = re.match('[1-9]\d?$|100$',text)
+print(ret.group())
+
+###########转义字符和原生字符##############
+text = "apple price is $299"
+ret = re.search('\$\d+',text)
+print(ret.group())
+
+################# 原生###################
+text = r'\n'
+print(text)
+
+text = '\c'
+ret1 = re.match('\\\c',text)
+ret2 = re.match(r'\\c',text)
+print(ret1.group())
+print(ret2.group())
